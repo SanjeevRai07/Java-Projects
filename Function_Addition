@@ -1,0 +1,8 @@
+public class Function_addition {
+    public static int Calculate_sum(int a ,int b){
+        int sum = a + b;
+        
+
+    }
+    
+}
