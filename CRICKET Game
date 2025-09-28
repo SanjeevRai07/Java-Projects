@@ -1,0 +1,74 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class CricketGame {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Random rand = new Random();
+        int playerScore = 0, computerScore = 0;
+        int choice, comp;
+
+        System.out.println("🏏 Welcome to Simple Cricket Game 🏏");
+        System.out.println("Rules: Choose a number between 1 and 6.");
+        System.out.println("If your number matches computer’s number, you are OUT!\n");
+
+        // Batting
+        System.out.println("You are batting first!");
+        while (true) {
+            System.out.print("Enter your run (1-6): ");
+            choice = sc.nextInt();
+            if (choice < 1 || choice > 6) {
+                System.out.println("Invalid choice! Enter between 1-6.");
+                continue;
+            }
+
+            comp = rand.nextInt(6) + 1;
+            System.out.println("Computer chose: " + comp);
+
+            if (choice == comp) {
+                System.out.println("You are OUT!");
+                break;
+            } else {
+                playerScore += choice;
+                System.out.println("Your Score: " + playerScore);
+            }
+        }
+
+        System.out.println("\nYour total score: " + playerScore);
+        System.out.println("Computer needs " + (playerScore + 1) + " to win.\n");
+
+        // Bowling
+        System.out.println("Now you are bowling!");
+        while (computerScore <= playerScore) {
+            System.out.print("Enter your bowl (1-6): ");
+            choice = sc.nextInt();
+            if (choice < 1 || choice > 6) {
+                System.out.println("Invalid choice! Enter between 1-6.");
+                continue;
+            }
+
+            comp = rand.nextInt(6) + 1;
+            System.out.println("Computer played: " + comp);
+
+            if (choice == comp) {
+                System.out.println("Computer is OUT!");
+                break;
+            } else {
+                computerScore += comp;
+                System.out.println("Computer Score: " + computerScore);
+            }
+        }
+
+        // Result
+        System.out.println("\n--- Match Result ---");
+        if (playerScore > computerScore) {
+            System.out.println("🎉 You Won the Match! 🎉");
+        } else if (playerScore < computerScore) {
+            System.out.println("😔 Computer Won the Match!");
+        } else {
+            System.out.println("🤝 Match Draw!");
+        }
+
+        sc.close();
+    }
+}
